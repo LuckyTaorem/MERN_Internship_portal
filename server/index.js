@@ -11,7 +11,7 @@ app.use(cors({
     origin:["https://mern-internship.onrender.com"],
     credentials:true
 }))
-mongoose.connect(`mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/internships?retryWrites=true&w=majority&ssl=true&sslCAPath=X509-cert-2910085730938976237.pem.pem`).then(()=>{
+mongoose.connect(`mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/internships?retryWrites=true&w=majority&ssl=true`).then(()=>{
     console.log("connected to database")
 })
 app.use("/auth",router)
