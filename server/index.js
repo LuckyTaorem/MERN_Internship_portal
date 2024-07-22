@@ -1,20 +1,23 @@
-const express =require("express")
-const app = express()
-const cors = require("cors")
-const bodyParser = require("body-parser")
-const mongoose = require("mongoose")
-const router = require("./routes/userr")
-const cookieParser = require("cookie-parser")
-app.use(bodyParser.json())
-app.use(cookieParser())
-app.use(cors({
-    origin:["https://mern-internship.onrender.com"],
-    credentials:true
-}))
-mongoose.connect(`mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/internships?retryWrites=true&w=majority&ssl=true`).then(()=>{
-    console.log("connected to database")
-})
-app.use("/auth",router)
-app.listen(4000,()=>{
-    console.log("server is running on port 4000")
-})
+const { MongoClient } = require("mongodb");
+
+// Replace the uri string with your connection string.
+const uri = "mongodb+srv://luckycluster.son3r0i.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=LuckyCluster";
+
+const client = new MongoClient(uri);
+
+async function run() {
+  try {
+    const database = client.db('sample_mflix');
+    const movies = database.collection('movies');
+
+    // Query for a movie that has the title 'Back to the Future'
+    const query = { title: 'Back to the Future' };
+    const movie = await movies.findOne(query);
+
+    console.log(movie);
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
