@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
 // Replace the uri string with your connection string.
-const uri = "mongodb+srv://luckycluster.son3r0i.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=LuckyCluster";
+const uri = "mongodb+srv://luckycluster.son3r0i.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=LuckyCluster&tls=false&ssl=false";
 
 const client = new MongoClient(uri);
 
