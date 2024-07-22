@@ -11,17 +11,15 @@ app.use(cors({
     origin:["https://mern-internship.onrender.com"],
     credentials:true
 }))
-mongoose.connect(`mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/internships`).then(()=>{
-    console.log("connected to database")
-})
-
-app.use("/test",()=>{
-    const mongoose = require('mongoose');
-
+//mongoose.connect(`mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/internships`).then(()=>{
+//    console.log("connected to database")
+//})
 mongoose.connect("mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/fsmernlpu").then(()=>{
     console.log("Connected to MongoDb");
 })
 
+app.use("/test",()=>{
+//    const mongoose = require('mongoose');
 const student = new mongoose.Schema({
     name: String,
     age:Number,
