@@ -49,6 +49,7 @@ router.post("/login",async (req,res)=>{
     res.cookie("token",token)
     return res.json({status:true,message:"Login Successfull",token})
 })
+
 const verifyUser =async (req,res,next)=>{
     try {
         const token = req.cookies.token;
@@ -89,7 +90,6 @@ router.delete("/remove/:id", verifyUser, async (req, res) => {
       const removedOppurtunity = await AppliedOppurtunity.deleteOne({
         id: id
       });
-    //   await removedOppurtunity.save()
       if (!removedOppurtunity) {
         return res.status(404).json({ message: "Oppurtunity not found" });
       }
@@ -108,24 +108,19 @@ router.get("/applied-oppurtunities",verifyUser,async (req,res)=>{
  }
 })
 router.get("/verify",verifyUser,(req,res)=>{
-    // if(req.user){
-    //   console.log(req.user);
       return res.json({status:true,message:"Auth Successfull",user:req.user})
-    // }
-    // else
-    // return res.json({status:false,message:"Auth Failed"})
 })
 router.get("/profile", verifyUser, async (req, res) => {
     try {
       const user = await UserModel.findOne({ email: req.user.email });
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
       function getGravatarUrl(email, size = 80) {
         const trimmedEmail = email.trim().toLowerCase();
         const hash = crypto.createHash('sha256').update(trimmedEmail).digest('hex');
-        return `https://www.gravatar.com/avatar/${hash}?s=${size}&d=mp`;
+        res.cookie("gravatar",`https://www.gravatar.com/avatar/${hash}?s=${size}&d=mp`);
     }
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
     const size = 100; // Optional size parameter
     const gravatarUrl = getGravatarUrl(user.email, size);
 
@@ -137,6 +132,7 @@ router.get("/profile", verifyUser, async (req, res) => {
 
 router.get("/logout",(req,res)=>{
     res.clearCookie('token');
+    res.clearCookie('gravatar');
     return res.json({status:true,message:"Logged out successfully"})
 })
 module.exports = router;

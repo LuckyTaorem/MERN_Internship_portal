@@ -8,13 +8,13 @@ const cookieParser = require("cookie-parser")
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:["http://localhost:3001"],
+    origin:["http://localhost:3000"],
     credentials:true
 }))
-mongoose.connect("mongodb://localhost:27017/internships").then(()=>{
+mongoose.connect(`mongodb://localhost:27017/internships`).then(()=>{
     console.log("connected to database")
 })
 app.use("/auth",router)
-app.listen(3000,()=>{
-    console.log("server is running on port 3000")
+app.listen(4000,()=>{
+    console.log("server is running on port 4000")
 })
