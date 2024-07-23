@@ -16,7 +16,7 @@ export default function Dashboard() {
       const interval = setInterval(() => {
       const newCookieValue = Cookies.get('gravatar');
         setGravatarUrl(newCookieValue);
-      }, 1000);
+      }, 10);
       return () => clearInterval(interval);
     }, [gravatarUrl]);
 
