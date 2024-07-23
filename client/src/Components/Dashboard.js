@@ -84,7 +84,7 @@ export default function Dashboard() {
            } else {
             fetchAppliedOppurtunities()
            }
-        }, 3000);
+        }, 10000);
         return () => clearInterval(interval);
         //})
     })
