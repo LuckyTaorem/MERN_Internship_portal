@@ -77,13 +77,13 @@ export default function Dashboard() {
         })
     }
     useEffect(()=>{
-        // axios.get(`${serverUrl}/auth/verify`).then((res)=>{
-           if(!userData){
+        axios.get(`${serverUrl}/auth/verify`).then((res)=>{
+           if(!res.data.status){
             navigate("/login")
            } else {
             fetchAppliedOppurtunities()
            }
-        // })
+        })
     })
     const fetchAppliedOppurtunities =async()=>{
         try {
