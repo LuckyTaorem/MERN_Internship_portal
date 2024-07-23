@@ -8,10 +8,10 @@ const cookieParser = require("cookie-parser")
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:["http://localhost:3000"],
+    origin:["https://mern-internship.onrender.com"],
     credentials:true
 }))
-mongoose.connect(`mongodb://localhost:27017/internships`).then(()=>{
+mongoose.connect(`mongodb+srv://luckytaorem5:Lucky@luckycluster.son3r0i.mongodb.net/internships`).then(()=>{
     console.log("connected to database")
 })
 app.use("/auth",router)
