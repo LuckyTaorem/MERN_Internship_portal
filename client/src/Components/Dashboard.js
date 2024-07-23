@@ -78,14 +78,14 @@ export default function Dashboard() {
     }
     useEffect(()=>{
        // axios.get(`${serverUrl}/auth/verify`).then((res)=>{
-      const interval = setInterval(() => {
+      //const interval = setInterval(() => {
            if(!userData){
             navigate("/login")
            } else {
             fetchAppliedOppurtunities()
            }
-        }, 10000);
-        return () => clearInterval(interval);
+        //}, 10000);
+        //return () => clearInterval(interval);
         //})
     })
     const fetchAppliedOppurtunities =async()=>{
